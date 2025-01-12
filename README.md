@@ -97,43 +97,55 @@ Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
 ## Modèle de Diffusion
 ## Fonctionnalités
 - **Simulation de diffusion** : Modélisation de la propagation des menaces dans un réseau.
-- **Classification des nœuds infectés** : Utilisation de `RandomForestClassifier` pour classifier les nœuds infectés en tant que menace ou normal.
-- **Visualisation** : Affichage graphique des nœuds infectés et de leur état dans le réseau.
-- **Interface utilisateur** : Application Flask pour interagir avec le modèle et visualiser les résultats.
-
+- **Classification des nœuds infectés** : Utilisation de `RandomForestClassifier` pour identifier les nœuds comme "menace" ou "normal".
+- **Visualisation graphique** :
+  - Les **nœuds infectés** sont représentés en **rouge**.
+  - Les **nœuds normaux** sont affichés en **bleu** ou **vert**.
+  - Les **connexions entre les nœuds** sont représentées par des **arêtes**.
 
 ## Structure du Projet 
+
 ### Fichiers Principaux
 
-- `diff.ipynb` : Notebook Jupyter pour l'exploration et l'analyse des données, la modélisation de diffusion .
-  
-Un modèle personnalisé, DiffusionModel, a été développé pour simuler la propagation des menaces :
+- **`diff.ipynb`** : Notebook Jupyter pour l'exploration et l'analyse des données, ainsi que la modélisation de diffusion.  
+  Un modèle personnalisé, `DiffusionModel`, a été développé pour simuler la propagation des menaces :
+  - Les **nœuds de départ** sont définis comme des points initiaux infectés.
+  - Les voisins des nœuds infectés sont progressivement marqués comme infectés sur un nombre défini d’**itérations**.
 
-    Les nœuds de départ sont définis comme des points initiaux infectés.
-    Les voisins des nœuds infectés sont progressivement marqués comme infectés sur un nombre défini d’itérations
+- **`app.py`** : Application Flask pour permettre l'interaction utilisateur avec la simulation et générer des visualisations.
 
-  
-- `app.py` : Application Flask pour permettre l'interaction utilisateur avec la simulation et générer des visualisations.
-- `friday.csv` : Fichier de données réseau utilisé pour la simulation.
-  Le fichier friday.csv contient des informations réseau telles que :
+- **`friday.csv`** : Fichier de données réseau utilisé pour la simulation.  
+  Ce fichier contient des informations réseau telles que :  
+  - Les **adresses IP source et destination**.  
+  - Le **nombre total de paquets envoyés et reçus**.  
+  - Les statistiques des flux (ex. : **durée, débit**).  
 
-    -Les adresses IP source et destination.
-    -Le nombre total de paquets envoyés et reçus.
-   - Les statistiques des flux (par exemple, la durée, le débit).
+  Les données sont **prétraitées** pour :  
+  - Remplacer les **valeurs manquantes** par 0.  
+  - Transformer les **labels** (`0` en `Normal`, autres en `Threat`).
 
-Les données sont prétraitées pour :
+- **`templates/index.html`** : Interface principale pour l'application Flask.  
+- **`templates/results.html`** : Résultats et visualisation après simulation.  
 
-    Remplacer les valeurs manquantes par 0.
-    Transformer les labels (0 en Normal, autres en Threat).
+  Une interface web interactive permet :  
+  - De **définir les nœuds initiaux**.  
+  - De **visualiser la diffusion** des menaces et leurs classifications.  
+  - D’**accéder aux résultats sauvegardés** sous forme de fichier.  
 
-    
-- `templates/index.html` : Interface principale pour l'application Flask.
-- `templates/results.html` : Résultats et visualisation après simulation.
+---
 
-  Une interface web interactive permet :
+## Résultats
 
-    De définir les nœuds initiaux.
-    De visualiser la diffusion des menaces et leurs classifications.
-    D’accéder aux résultats sauvegardés sous forme de fichier.
+### Visualisation de la diffusion
 
+Une **visualisation graphique** montre :  
+- Les **nœuds infectés** en **rouge** et les **nœuds normaux** en **bleu** ou **vert**.  
+- Les **connexions entre les nœuds** sous forme d’arêtes.  
 
+![Exemple de Visualisation](https://github.com/user-attachments/assets/c5c1e70d-be9a-4ba2-8657-0dc8be3dfa3a)
+
+---
+
+## Auteurs
+
+- **Haddad Alae** - Développement du projet. 
