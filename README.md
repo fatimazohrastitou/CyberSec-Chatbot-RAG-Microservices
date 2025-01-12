@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a3e38cd0-959f-4bd7-972c-62c352a98219)﻿# CyberSec Chatbot RAG Microservices
+﻿# CyberSec Chatbot RAG Microservices
 
 ## Description
 
