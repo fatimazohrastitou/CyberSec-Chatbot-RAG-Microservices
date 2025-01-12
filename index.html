@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    
+    <style>
+        /* Basic styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+    
+        #chat-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+    display: flex;
+    align-items: center; /* Aligne verticalement l'image, le titre et le statut */
+    justify-content: flex-start; /* Aligne tout à gauche */
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px; /* Espacement entre l'image et le texte */
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column; /* Aligne le titre et le statut verticalement */
+    align-items: flex-start; /* Aligne le texte à gauche */
+    margin-left: 0; /* Pas d'espace supplémentaire */
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header p.status {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #28a745; /* Couleur verte */
+}
+
+#logout-btn {
+    margin-left: auto; /* Pousse le bouton à l'extrémité droite */
+    background-color: #6b45a0; /* Couleur de fond du bouton */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#logout-btn:hover {
+    background-color: #5a3c80; /* Couleur plus sombre au survol */
+}
+
+
+        #chat-history {
+            height: 300px;
+            overflow-y: auto;
+            flex-grow: 1;
+            margin-bottom: 10px;
+            padding-right: 10px;
+        }
+    
+        .user-message, .bot-message {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 5px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+    
+        .user-message {
+            background-color: #e1f5fe; /* Light blue for user */
+            align-self: flex-end;
+        }
+    
+        .bot-message {
+            background-color: #c8e6c9; /* Light green for bot */
+            align-self: flex-start;
+        }
+    
+        form {
+            display: flex;
+        }
+    
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    
+        button {
+            background-color: #8b79f7; /* Green */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #6b45a0; /* Darker green */
+        }
+    
+        /* Login and Register form styles */
+        #auth-container {
+            width: 300px;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        #auth-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    
+        #auth-container button {
+            width: 100%;
+            background-color: #8b79f7;
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+    
+        #auth-container button:hover {
+            background-color: #6b45a0;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Authentication Form -->
+    <div id="auth-container">
+        <h2>Login</h2>
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Username" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+    </div>
+
+    <!-- Registration Form -->
+    <div id="register-container" style="display:none;">
+        <h2>Register</h2>
+        <form id="register-form">
+            <input type="text" id="register-username" placeholder="Username" required>
+            <input type="password" id="register-password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+    </div>
+
+    <!-- ChatBot -->
+    <div id="chat-container" style="display:none;">
+        <div class="header">
+            <img src="https://img.freepik.com/free-vector/cute-robot-holding-clipboard-cartoon-vector-icon-illustration-science-technology-icon-isolated_138676-5184.jpg?size=626&ext=jpg&uid=R102997662&ga=GA1.1.2137966336.1728656664&semt=ais_hybrid" alt="">
+            <div class="header-text">
+                <h2>ChatBot</h2>
+                <p class="status">Active</p> <!-- Texte sous le titre -->
+            </div>
+            <button id="logout-btn" onclick="logout()">Logout</button>
+        </div>
+        
+        <div id="chat-history"></div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Enter your message" required>
+            <button type="submit"><i class="fas fa-paper-plane"></i>Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const authContainer = document.getElementById('auth-container');
+        const registerContainer = document.getElementById('register-container');
+        const chatHistory = document.getElementById('chat-history');
+        const userInput = document.getElementById('user-input');
+        const form = document.getElementById('chat-form');
+
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+
+        // Show Register Form
+        showRegister.addEventListener('click', () => {
+            authContainer.style.display = 'none';
+            registerContainer.style.display = 'block';
+        });
+
+        // Show Login Form
+        showLogin.addEventListener('click', () => {
+            registerContainer.style.display = 'none';
+            authContainer.style.display = 'block';
+        });
+
+        // Register User
+        async function registerUser(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+            if (data.message === 'User registered successfully') {
+                alert(data.message);
+                authContainer.style.display = 'block';
+                registerContainer.style.display = 'none';
+            } else {
+                alert(data.message);
+            }
+        }
+
+        // Login User
+        async function loginUser(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
+            if (data.token) {
+                localStorage.setItem('token', data.token);
+                authContainer.style.display = 'none';
+                chatContainer.style.display = 'block';
+            } else {
+                alert(data.message);
+            }
+        }
+        function logout() {
+            localStorage.removeItem('token');
+            chatContainer.style.display = 'none';
+            authContainer.style.display = 'block';
+            chatHistory.innerHTML = '';
+        }
+
+        // Send Message
+        async function sendMessage() {
+            const userMessage = userInput.value;
+            userInput.value = ''; // Clear input field
+
+            chatHistory.innerHTML += `<div class="user-message">${userMessage}</div>`;
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to the bottom
+
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ userInput: userMessage }),
+                });
+
+                const data = await response.json();
+                if (data.response) {
+                    chatHistory.innerHTML += `<div class="bot-message">${data.response}</div>`;
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                } else {
+                    chatHistory.innerHTML += `<div class="bot-message">Error: ${data.message}</div>`;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                chatHistory.innerHTML += `<div class="bot-message">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Event Listeners
+        loginForm.addEventListener('submit', loginUser);
+        registerForm.addEventListener('submit', registerUser);
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            sendMessage();
+        });
+    </script>
+</body>
+</html>
