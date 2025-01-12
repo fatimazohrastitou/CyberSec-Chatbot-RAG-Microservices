@@ -1,4 +1,9 @@
-﻿# CyberSec Chatbot RAG Microservices
+
+ # 📂 Membres du Groupe : 
+- **Haddad Alae**
+- **Stitou Fatima**
+ 
+ # 1.CyberSec Chatbot RAG Microservices
 
 ## Description
 
@@ -94,7 +99,7 @@ Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
 - **Fatima Stitou** - Développement du projet.
 
   
-## Modèle de Diffusion
+## 2.Modèle de Diffusion
 ## Fonctionnalités
 - **Simulation de diffusion** : Modélisation de la propagation des menaces dans un réseau.
 - **Classification des nœuds infectés** : Utilisation de `RandomForestClassifier` pour identifier les nœuds comme "menace" ou "normal".
@@ -124,6 +129,16 @@ Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
   - Remplacer les **valeurs manquantes** par 0.  
   - Transformer les **labels** (`0` en `Normal`, autres en `Threat`).
 
+
+- **`network_data_infected.csv`** : Fichier **généré** contenant les données relatives aux nœuds infectés.  
+  Ce fichier contient des informations sur le comportement réseau des nœuds, telles que :
+  - Le **nombre de paquets envoyés et reçus**.
+  - La **longueur des paquets**.
+  - Le **débit des flux**.
+  - Un label indiquant si le nœud est considéré comme une **menace** ou non.  
+
+  Ces données sont utilisées pour simuler et classifier les nœuds infectés dans le réseau.
+
 - **`templates/index.html`** : Interface principale pour l'application Flask.  
 - **`templates/results.html`** : Résultats et visualisation après simulation.  
 
@@ -149,3 +164,4 @@ Une **visualisation graphique** montre :
 ## Auteurs
 
 - **Haddad Alae** - Développement du projet. 
+## 3.CI/CD
