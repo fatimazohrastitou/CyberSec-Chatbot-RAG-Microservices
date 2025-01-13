@@ -2,7 +2,7 @@
 - **Haddad Alae**
 - **Stitou Fatima**
 
-#1. CyberSec Chatbot RAG Microservices
+# 1. CyberSec Chatbot RAG Microservices
 
 ## Description
 
