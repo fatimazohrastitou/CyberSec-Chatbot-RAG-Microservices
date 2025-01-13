@@ -1,6 +1,7 @@
-﻿📂 Membres du Groupe :
-Haddad Alae
-Stitou Fatima
+# 📂 Membres du Groupe : 
+- **Haddad Alae**
+- **Stitou Fatima**
+
 1. CyberSec Chatbot RAG Microservices
 Description
 Ce projet est un chatbot de cybersécurité développé avec React.js qui utilise l'option RAG (Retrieval-Augmented Generation) pour répondre uniquement aux questions liées à la cybersécurité. Le chatbot est intégré à un backend MongoDB pour gérer les utilisateurs (inscription, connexion, déconnexion). Il exploite la technologie Pincone pour la gestion des données et les requêtes de recherche. En outre, il intègre Gemini AI pour générer des réponses intelligentes aux questions des utilisateurs, se concentrant spécifiquement sur les sujets de cybersécurité.
