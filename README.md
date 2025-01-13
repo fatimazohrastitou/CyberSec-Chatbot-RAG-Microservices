@@ -203,8 +203,8 @@ Le pipeline CI/CD est configuré pour automatiser les tests et déploiements.
 ## Conclusion
 Ces deux projets, **CyberSec Chatbot RAG Microservices** et **Modèle de Diffusion**, incarnent une réponse moderne et ambitieuse aux défis actuels en cybersécurité, en exploitant pleinement les dernières avancées technologiques.
 
-**CyberSec Chatbot RAG Microservices** : En intégrant **Gemini AI** et l'approche **RAG**, ce projet offre une solution intelligente et proactive, capable de fournir des réponses précises et adaptées aux questions complexes liées à la cybersécurité.
+- **CyberSec Chatbot RAG Microservices** : En intégrant **Gemini AI** et l'approche **RAG**, ce projet offre une solution intelligente et proactive, capable de fournir des réponses précises et adaptées aux questions complexes liées à la cybersécurité.
 
-**Modèle de Diffusion** : Ce projet propose un outil révolutionnaire pour visualiser, analyser et anticiper la propagation des menaces dans un réseau. Grâce à des visualisations intuitives et des algorithmes de classification avancés, il aide à mieux comprendre les mécanismes des attaques pour une réaction rapide et efficace.
+- **Modèle de Diffusion** : Ce projet propose un outil révolutionnaire pour visualiser, analyser et anticiper la propagation des menaces dans un réseau. Grâce à des visualisations intuitives et des algorithmes de classification avancés, il aide à mieux comprendre les mécanismes des attaques pour une réaction rapide et efficace.
 
 Ces initiatives reflètent une volonté claire de l'équipe de dépasser les approches traditionnelles, en mettant à profit des solutions innovantes pour sécuriser les environnements numériques. Elles démontrent également que les technologies modernes, lorsqu'elles sont judicieusement appliquées, peuvent transformer la cybersécurité en un domaine plus résilient et mieux préparé aux menaces futures.
