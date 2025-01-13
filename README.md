@@ -2,7 +2,7 @@
 - **Haddad Alae**
 - **Stitou Fatima**
 
-1. CyberSec Chatbot RAG Microservices
+#1. CyberSec Chatbot RAG Microservices
 Description
 Ce projet est un chatbot de cybersécurité développé avec React.js qui utilise l'option RAG (Retrieval-Augmented Generation) pour répondre uniquement aux questions liées à la cybersécurité. Le chatbot est intégré à un backend MongoDB pour gérer les utilisateurs (inscription, connexion, déconnexion). Il exploite la technologie Pincone pour la gestion des données et les requêtes de recherche. En outre, il intègre Gemini AI pour générer des réponses intelligentes aux questions des utilisateurs, se concentrant spécifiquement sur les sujets de cybersécurité.
 
@@ -183,3 +183,34 @@ Une **visualisation graphique** montre :
 ## Auteurs
 
 - **Haddad Alae** - Développement du projet.
+Le pipeline CI/CD est configuré pour automatiser les tests et déploiements.
+
+1. **Checkout du code** :
+    ```yaml
+    - name: Checkout code
+      uses: actions/checkout@v3
+    ```
+
+2. **Configuration de Python** :
+    ```yaml
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    ```
+
+3. **Installation des dépendances** :
+    ```yaml
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+    ```
+
+4. **Tests** (si disponibles) :
+    ```yaml
+    - name: Run Flask tests
+      run: |
+        pytest tests/
+    ```
