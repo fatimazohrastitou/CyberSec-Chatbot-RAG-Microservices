@@ -1,7 +1,7 @@
 # 📂 Membres du Groupe : 
 - **Haddad Alae**
 - **Stitou Fatima**
-- **Touarssi Ibtissame**
+
 
 # 1. CyberSec Chatbot RAG Microservices
 
