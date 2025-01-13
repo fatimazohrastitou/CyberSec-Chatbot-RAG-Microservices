@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Flask
+name: CI/CD for Model de Diffusion
 
 on:
   push:
@@ -9,19 +9,19 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Checkout the code
+    # 1. Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Set up Python environment
+    # 2. Set up Python
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.9  # Choisissez la version de Python appropriée
+        python-version: '3.9'
 
     # 3. Install dependencies
     - name: Install dependencies
@@ -29,36 +29,10 @@ jobs:
         python -m venv venv
         source venv/bin/activate
         pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r model_de_diffusion/requirements.txt
 
-    # 4. Run tests
-    - name: Run tests
+    # 4. Run tests (if you have tests)
+    - name: Run Flask tests
       run: |
         source venv/bin/activate
-        pytest tests/
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-    # 1. Checkout the code
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    # 2. Install dependencies
-    - name: Install dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        pip install --upgrade pip
-        pip install -r requirements.txt
-
-    # 3. Deploy the application
-    - name: Deploy application
-      env:
-        FLASK_APP: app.py  # Changez selon votre application
-        FLASK_ENV: production
-      run: |
-        source venv/bin/activate
-        flask run --host=0.0.0.0 --port=5000 &
+        pytest model_de_diffusion/tests
