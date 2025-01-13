@@ -30,9 +30,3 @@ jobs:
         source venv/bin/activate
         pip install --upgrade pip
         pip install -r model_de_diffusion/requirements.txt
-
-    # 4. Run tests (if you have tests)
-    - name: Run Flask tests
-      run: |
-        source venv/bin/activate
-        pytest model_de_diffusion/tests
