@@ -165,3 +165,32 @@ Une **visualisation graphique** montre :
 
 - **Haddad Alae** - Développement du projet. 
 ## 3.CI/CD
+Le pipeline CI/CD est configuré pour automatiser les tests et déploiements. 
+1. **Checkout du code** :
+    ```yaml
+    - name: Checkout code
+      uses: actions/checkout@v3
+    ```
+
+2. **Configuration de Python** :
+    ```yaml
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    ```
+    3. **Installation des dépendances** :
+    ```yaml
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+    ```
+
+4. **Tests**  :
+    ```yaml
+    - name: Run Flask tests
+      run: |
+        pytest tests/
+    ```
