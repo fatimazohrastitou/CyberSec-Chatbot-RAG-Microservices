@@ -168,6 +168,8 @@ Une **visualisation graphique** montre :
 ## Auteurs
 
 - **Haddad Alae** - Développement du projet.
+##3.CI/CD
+
 Le pipeline CI/CD est configuré pour automatiser les tests et déploiements.
 
 1. **Checkout du code** :
